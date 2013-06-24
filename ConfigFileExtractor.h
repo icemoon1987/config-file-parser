@@ -8,25 +8,26 @@
 
 enum KeywordType
 {
-	KEY_TYPE_INT;
-	KEY_TYPE_DOUBLE; 
-	KEY_TYPE_STRING;
-	KEY_TYPE_BOOL; 
+	KEY_TYPE_INT,
+	KEY_TYPE_DOUBLE,
+	KEY_TYPE_STRING,
+	KEY_TYPE_BOOL,
+	KEY_TYPE_ERROR
 };
 
-typedef std::pair<std::string keyword, enum KeywordType> Keyword;
+typedef std::pair<std::string,enum KeywordType> Keyword;
 
 
 class ConfigFileExtractor
 {
 	private:
-		std::map< std::string keyword, enum KeywordType > m_keywords;
+		std::map<std::string, enum KeywordType> m_keywords;
 
 	private:
-		std::map< std::string keyword, int value > m_intMap;
-		std::map< std::string keyword, double value  > m_doubleMap;
-		std::map< std::string keyword, std::string value > m_stringMap;
-		std::map< std::string keyword, bool value > m_boolMap;
+		std::map< std::string, int > m_intMap;
+		std::map< std::string, double > m_doubleMap;
+		std::map< std::string, std::string > m_stringMap;
+		std::map< std::string, bool > m_boolMap;
 		int m_paraNum;
 
 	private:
@@ -37,7 +38,6 @@ class ConfigFileExtractor
 
 	public:
 		ConfigFileExtractor();
-		ConfigFileExtractor(const std::vector<Keyword> keywords);
 		~ConfigFileExtractor();
 		
 	public:

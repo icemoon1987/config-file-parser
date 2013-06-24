@@ -7,21 +7,13 @@ using namespace std;
 
 
 ConfigFileExtractor::ConfigFileExtractor()
-	: m_paraNum = 0 
+	: m_paraNum(0) 
 {
 	m_keywords.clear();
 	m_intMap.clear();
 	m_doubleMap.clear();
 	m_stringMap.clear();
 	m_boolMap.clear();
-}
-
-
-ConfigFileExtractor::ConfigFileExtractor(const std::vector<Keyword> keywords)
-	: m_paraNum = 0,
-	  m_keywords = keywords 
-{
-	this.ConfigFileExtractor();
 }
 
 
@@ -33,9 +25,9 @@ ConfigFileExtractor::~ConfigFileExtractor()
 int ConfigFileExtractor::AddKeyword(const Keyword keyword)
 {
 	/** If the keyword is not empty, try insert the keyword into m_keywords */
-	if(keyword.first == "")
+	if(keyword.first == "" || keyword.second == KEY_TYPE_ERROR)
 	{
-		cerr << "AddKeyword() error: Key Error!" << endl;
+		cerr << "AddKeyword() error: Keyword Error!" << endl;
 		return -1;
 	}
 	else
@@ -74,18 +66,18 @@ enum KeywordType ConfigFileExtractor::GetKeywordType(const std::string key)
 	if( key == "" )
 	{
 		cerr << "DelKeyword() error: Key Error!" << endl;
-		return -1;
+		return KEY_TYPE_ERROR;
 	}
 	else
 	{
-		m_keywords::iterator i;
+		map<std::string, enum KeywordType>::iterator i;
 
 		i = m_keywords.find(key);
 
-		if ( m_keywords.end == i )
+		if ( i == m_keywords.end() )
 		{
 			cerr << "GetKeywordType() error: " << key << " is not in m_keywords!" << endl;
-			return -2;
+			return KEY_TYPE_ERROR;
 		}
 		else
 		{
@@ -98,7 +90,7 @@ enum KeywordType ConfigFileExtractor::GetKeywordType(const std::string key)
 
 void ConfigFileExtractor::DumpKeywords(void)
 {
-	m_keywords::iterator i;	
+	map<std::string, enum KeywordType>::iterator i;	
 
 	for(i = m_keywords.begin() ; i != m_keywords.end() ; i++)
 	{
