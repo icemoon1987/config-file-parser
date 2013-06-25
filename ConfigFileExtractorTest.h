@@ -14,6 +14,7 @@ class ConfigFileExtractorTest
 
 	public:
 		void KeywordTest(void);
+		void ExtractFileTest(void);
 };
 
 #endif

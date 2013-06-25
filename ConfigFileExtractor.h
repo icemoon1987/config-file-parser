@@ -31,28 +31,34 @@ class ConfigFileExtractor
 		int m_paraNum;
 
 	private:
-		void * GetValue(const std::string key);
+		std::string KeytypeToString(const enum KeywordType type);
+		int CheckType(const enum KeywordType expType, const enum KeywordType type);
+		void * GetValue(const std::string key, enum KeywordType type);
 		int StringToInt(const std::string value);
 		double StringToDouble(const std::string value);
-		bool StringToBool(const std::string value);
+		bool StringToBool(std::string value);
+		std::string &TrimSpaces(std::string &s);
+		std::string &TrimComments(std::string &s, const char commToken);
+		int PhaseLine(std::string line, const char delim);
+		int ExtractParameter(const std::string key, const std::string value);
 
 	public:
 		ConfigFileExtractor();
 		~ConfigFileExtractor();
 		
 	public:
-		int AddKeyword(const Keyword keyword);
-		int DelKeyword(const std::string key);
-		enum KeywordType GetKeywordType(const std::string key);
+		int AddKeyword(Keyword keyword);
+		int DelKeyword(std::string key);
+		enum KeywordType GetKeywordType(std::string key);
 		void DumpKeywords(void);
 		void Clear(void);
 
 	public:
-		int ExtractFile(const std::string filePath);
-		int GetValueInt(const std::string key);
-		int GetValueDouble(const std::string key);
-		int GetValueString(const std::string key);
-		int GetValueBool(const std::string key);
+		int ExtractFile(const std::string filePath, const char delim = '=', const char commToken = '#');
+		int GetValueInt(std::string key);
+		double GetValueDouble(std::string key);
+		std::string GetValueString(std::string key);
+		bool GetValueBool(std::string key);
 
 };
 

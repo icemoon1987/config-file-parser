@@ -118,3 +118,40 @@ void ConfigFileExtractorTest::KeywordTest(void)
 	m_cfg.DumpKeywords();
 	cout << endl;
 }
+
+
+
+void ConfigFileExtractorTest::ExtractFileTest(void)
+{
+	cout << "---------------------------" << endl;
+	cout << "|    Extract File Test    |" << endl;
+	cout << "---------------------------" << endl;
+	
+	/** Normal Extract Test  */	
+	cout << "** Normal Extract **" << endl;
+
+	int val1;
+	string val2;
+	double val3;
+	bool val4;
+
+	m_cfg.AddKeyword(make_pair("keyword1", KEY_TYPE_INT));
+	m_cfg.AddKeyword(make_pair("keyword2", KEY_TYPE_STRING));
+	m_cfg.AddKeyword(make_pair("keyword3", KEY_TYPE_DOUBLE));
+	m_cfg.AddKeyword(make_pair("keyword4", KEY_TYPE_BOOL));
+
+	m_cfg.ExtractFile("./test_files/test_file1.conf", '=', '#');
+
+	val1 = m_cfg.GetValueInt("keyword1");
+	val2 = m_cfg.GetValueString("keyword2");
+	val3 = m_cfg.GetValueDouble("keyword3");
+	val4 = m_cfg.GetValueBool("keyword4");
+
+	cout << "val1 = " << val1 << endl;
+	cout << "val2 = " << val2 << endl;
+	cout << "val3 = " << val3 << endl;
+	cout << "val4 = " << val4 << endl;
+
+	return;
+}
+

@@ -10,6 +10,7 @@ int main( int argc, char *argv[])
 	ConfigFileExtractorTest cfgTest(cfg);
 	
 	cfgTest.KeywordTest();
+	cfgTest.ExtractFileTest();
 
 	return 0;
 }
