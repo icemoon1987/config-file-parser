@@ -3,11 +3,12 @@
 # 2013-06-24
 
 CC = g++
-TARGET = test
+TARGET = main 
 LIB_ARGS = 
 
-OBJS = test.o \
+OBJS = main.o \
 	   ConfigFileExtractor.o \
+	   ConfigFileExtractorTest.o \
 
 OBJS_C = 
 

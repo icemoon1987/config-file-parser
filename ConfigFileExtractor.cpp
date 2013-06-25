@@ -32,8 +32,10 @@ int ConfigFileExtractor::AddKeyword(const Keyword keyword)
 	}
 	else
 	{
+		/** If the keyword is already in m_keywords, update the value and give out a warning  */
 		if(m_keywords.insert(keyword).second == false)
 		{
+			m_keywords[keyword.first] = keyword.second;
 			cerr << "AddKeyword() warning: updated the keyword:"<< keyword.first << endl;
 		}
 	}
@@ -94,9 +96,40 @@ void ConfigFileExtractor::DumpKeywords(void)
 
 	for(i = m_keywords.begin() ; i != m_keywords.end() ; i++)
 	{
-		cout << "Key=" << (*i).first << "	" << "Value=" << (*i).second << endl;
+		cout << "Key=" << (*i).first << "	" << "Value=";
+
+		switch((*i).second)
+		{
+			case KEY_TYPE_STRING:
+				{
+					cout << "STRING";
+					break;
+				}
+			case KEY_TYPE_DOUBLE:
+				{
+					cout << "DOUBLE";
+					break;
+				}
+			case KEY_TYPE_INT:
+				{
+					cout << "INT";
+					break;
+				}
+			case KEY_TYPE_BOOL:
+				{
+					cout << "BOOL";
+					break;
+				}
+			default:
+				{
+					cout << endl << "DumpKeywords() error: unknown keyword type!" << endl;
+					break;
+				}
+		}
+
+		cout << endl;
 	}
-	
+
 	return;
 }
 
