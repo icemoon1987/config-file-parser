@@ -187,7 +187,13 @@ std::string &ConfigFileExtractor::TrimComments(std::string &s, const char commTo
 		return s;
 	}
 
-	s.erase(s.find_first_of(commToken));
+	int pos = s.find_first_of(commToken);
+
+	if( pos != s.npos )
+	{
+		s.erase(pos);
+	}
+
 	return s;
 }
 
