@@ -9,8 +9,10 @@ int main( int argc, char *argv[])
 	ConfigFileExtractor cfg;
 	ConfigFileExtractorTest cfgTest(cfg);
 	
-	cfgTest.KeywordTest();
-	cfgTest.ExtractFileTest();
+	//cfgTest.KeywordTest();
+	//cfgTest.ExtractFileTest();
+	
+	cfgTest.NewExtractTest();
 
 	return 0;
 }

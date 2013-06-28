@@ -13,8 +13,7 @@ class ConfigFileExtractorTest
 		~ConfigFileExtractorTest() {};
 
 	public:
-		void KeywordTest(void);
-		void ExtractFileTest(void);
+		void NewExtractTest(void);
 };
 
 #endif
