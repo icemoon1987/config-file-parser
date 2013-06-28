@@ -30,6 +30,21 @@ void ConfigFileExtractorTest::NewExtractTest(void)
 	cout << "val2 = " << val2 << endl;
 	cout << "val3 = " << val3 << endl;
 	cout << "val4 = " << val4 << endl;
+	cout << endl;
+
+	/** Default Value Test */
+	cout << "** Default Value Test **" << endl;
+
+	val1 = m_cfg.GetValueInt("keyword5");
+	val2 = m_cfg.GetValueString("keyword5");
+	val3 = m_cfg.GetValueDouble("keyword5");
+	val4 = m_cfg.GetValueBool("keyword5");
+
+	cout << "val1 = " << val1 << endl;
+	cout << "val2 = " << val2 << endl;
+	cout << "val3 = " << val3 << endl;
+	cout << "val4 = " << val4 << endl;
+	cout << endl;
 
 	return;
 }

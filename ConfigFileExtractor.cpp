@@ -324,8 +324,12 @@ int ConfigFileExtractor::GetValueInt(std::string key)
 	{
 		return 0;
 	}
+
+	int result;
+	stringstream ssTem( *(string*)tmp );
+	ssTem >> result;
 	
-	return *(int*)tmp;
+	return result;
 }
 
 
@@ -347,7 +351,11 @@ double ConfigFileExtractor::GetValueDouble(std::string key)
 		return 0.0;
 	}
 	
-	return *(double*)tmp;
+	double result;
+	stringstream ssTem( *(string*)tmp );
+	ssTem >> result;
+
+	return result;
 }
 
 
@@ -391,7 +399,26 @@ bool ConfigFileExtractor::GetValueBool(std::string key)
 		return false;
 	}
 	
-	return *(bool*)tmp;
+	string result;
+	result = *(string*)tmp;
+
+	transform(result.begin(), result.end(), result.begin(), ::tolower);
+
+	if( result == "1" || result == "true" )
+	{
+		return true;
+	}
+	else if( result == "0" || result == "false" )
+	{
+		return false;
+	}
+	else
+	{
+		cerr << "ConfigFileExtractor::GetValueBool() error: invalid value: " << result << endl;
+		return false;	
+	}
+
+	return false;
 }
 
 
