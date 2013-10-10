@@ -14,6 +14,7 @@ class ConfigFileExtractorTest
 
 	public:
 		void NewExtractTest(void);
+		void CCSMConfTest(void);
 };
 
 #endif

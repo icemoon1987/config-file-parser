@@ -3,7 +3,7 @@
 # 2013-06-24
 
 CC = g++
-TARGET = main 
+TARGET = config_file_extractor  
 LIB_ARGS = 
 
 OBJS = main.o \

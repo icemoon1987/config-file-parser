@@ -12,7 +12,8 @@ int main( int argc, char *argv[])
 	//cfgTest.KeywordTest();
 	//cfgTest.ExtractFileTest();
 	
-	cfgTest.NewExtractTest();
+	//cfgTest.NewExtractTest();
+	cfgTest.CCSMConfTest();
 
 	return 0;
 }

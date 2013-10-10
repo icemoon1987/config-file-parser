@@ -226,7 +226,7 @@ int ConfigFileExtractor::ExtractFile(const string filePath, const char delim, co
 		TrimComments(line, commToken);
 		transform(line.begin(), line.end(), line.begin(), ::tolower);
 
-		if( line == "")
+		if( line == "" || line == "\n" || line == "\r\n" || line == "\r")
 		{
 			continue;
 		}

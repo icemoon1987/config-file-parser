@@ -48,3 +48,34 @@ void ConfigFileExtractorTest::NewExtractTest(void)
 
 	return;
 }
+
+void ConfigFileExtractorTest::CCSMConfTest(void)
+{
+	string ip_c_1;
+	short port_c_1;
+
+	string ip_c_2;
+	short port_c_2;
+
+	string ip_ccsm;
+
+	m_cfg.ExtractFile("./test_files/CCSM.conf", '=', '#');
+
+	ip_c_1 = m_cfg.GetValueString("IP_C_1");
+	port_c_1 = m_cfg.GetValueInt("PORT_C_1");
+
+	ip_c_2 = m_cfg.GetValueString("IP_C_2");
+	port_c_2 = m_cfg.GetValueInt("PORT_C_2");
+	
+	ip_ccsm = m_cfg.GetValueString("IP_CCSM");
+
+	cout << "ip_c_1 = " << ip_c_1 << endl;
+	cout << "port_c_1 = " << port_c_1 << endl;
+	cout << "ip_c_2 = " << ip_c_2 << endl;
+	cout << "port_c_2 = " << port_c_2 << endl;
+	cout << "ip_ccsm = " << ip_ccsm << endl;
+
+	return;
+}
+
+
