@@ -6,24 +6,24 @@
 #include <cctype>
 #include <algorithm>
 
-#include "ConfigFileExtractor.h"
+#include "CConfigFileParser.h"
 
 using namespace std;
 
 
-ConfigFileExtractor::ConfigFileExtractor()
+CConfigFileParser::CConfigFileParser()
 	: m_paraNum(0) 
 {
 	m_params.clear();
 }
 
 
-ConfigFileExtractor::~ConfigFileExtractor()
+CConfigFileParser::~CConfigFileParser()
 {
 }
 
 
-void ConfigFileExtractor::DumpParameters(void)
+void CConfigFileParser::DumpParameters(void)
 {
 	map<std::string, std::string>::iterator i;	
 
@@ -38,7 +38,7 @@ void ConfigFileExtractor::DumpParameters(void)
 }
 
 
-void ConfigFileExtractor::Clear(void)
+void CConfigFileParser::Clear(void)
 {
 	m_params.clear();
 	m_paraNum = 0;
@@ -47,7 +47,7 @@ void ConfigFileExtractor::Clear(void)
 }
 
 
-std::string & ConfigFileExtractor::TrimSpaces(std::string &s)
+std::string & CConfigFileParser::TrimSpaces(std::string &s)
 {
 	if (s.empty()) 
 	{
@@ -60,7 +60,7 @@ std::string & ConfigFileExtractor::TrimSpaces(std::string &s)
 }
 
 
-std::string &ConfigFileExtractor::TrimComments(std::string &s, const char commToken)
+std::string &CConfigFileParser::TrimComments(std::string &s, const char commToken)
 {
 	if (s.empty())
 	{
@@ -78,7 +78,7 @@ std::string &ConfigFileExtractor::TrimComments(std::string &s, const char commTo
 }
 
 
-int ConfigFileExtractor::StringToInt(const std::string value)
+int CConfigFileParser::StringToInt(const std::string value)
 {
 	if(value == "")
 	{
@@ -94,7 +94,7 @@ int ConfigFileExtractor::StringToInt(const std::string value)
 }
 
 
-double ConfigFileExtractor::StringToDouble(const std::string value)
+double CConfigFileParser::StringToDouble(const std::string value)
 {
 	if(value == "")
 	{
@@ -110,7 +110,7 @@ double ConfigFileExtractor::StringToDouble(const std::string value)
 }
 
 
-bool ConfigFileExtractor::StringToBool(std::string value)
+bool CConfigFileParser::StringToBool(std::string value)
 {
 	if(value == "")
 	{
@@ -135,7 +135,7 @@ bool ConfigFileExtractor::StringToBool(std::string value)
 
 
 
-int ConfigFileExtractor::StoreParameter(const std::string key, const std::string value)
+int CConfigFileParser::StoreParameter(const std::string key, const std::string value)
 {
 	if( key == "" || value == "")
 	{
@@ -148,7 +148,7 @@ int ConfigFileExtractor::StoreParameter(const std::string key, const std::string
 	if( m_params.insert(make_pair(key, value)).second == false )
 	{
 		/** If the parameter is already in m_params, update the value and give out a warning  */
-		cerr << "ConfigFileExtractor::StoreParameter() warning: update value, key=" << key << " value=" << m_params[key] << " NewValue=" << value << endl;
+		cerr << "CConfigFileParser::StoreParameter() warning: update value, key=" << key << " value=" << m_params[key] << " NewValue=" << value << endl;
 		m_params[key] = value;
 	}
 
@@ -156,7 +156,7 @@ int ConfigFileExtractor::StoreParameter(const std::string key, const std::string
 }
 
 
-int ConfigFileExtractor::PhaseLine(std::string line, const char delim)
+int CConfigFileParser::PhaseLine(std::string line, const char delim)
 {
 	if( line == "" | delim == 0)
 	{
@@ -199,7 +199,7 @@ int ConfigFileExtractor::PhaseLine(std::string line, const char delim)
 
 
 
-int ConfigFileExtractor::ExtractFile(const string filePath, const char delim, const char commToken)
+int CConfigFileParser::ExtractFile(const string filePath, const char delim, const char commToken)
 {
 	if( filePath == "" | delim == 0 | commToken == 0 )
 	{
@@ -246,11 +246,11 @@ int ConfigFileExtractor::ExtractFile(const string filePath, const char delim, co
 
 
 
-void * ConfigFileExtractor::GetValue(const std::string key)
+void * CConfigFileParser::GetValue(const std::string key)
 {
 	if ( key == "")
 	{
-		cout << "ConfigFileExtractor::GetValue() error: parameter error!" << endl;
+		cout << "CConfigFileParser::GetValue() error: parameter error!" << endl;
 		return NULL;
 	}
 
@@ -268,7 +268,7 @@ void * ConfigFileExtractor::GetValue(const std::string key)
 }
 
 
-string ConfigFileExtractor::KeytypeToString(const enum KeywordType type)
+string CConfigFileParser::KeytypeToString(const enum KeywordType type)
 {
 	string result;
 
@@ -307,11 +307,11 @@ string ConfigFileExtractor::KeytypeToString(const enum KeywordType type)
 }
 
 
-int ConfigFileExtractor::GetValueInt(std::string key)
+int CConfigFileParser::GetValueInt(std::string key)
 {
 	if( key == "" )
 	{
-		cerr << "ConfigFileExtractor::GetValue() error: keyword is empty!" << endl;
+		cerr << "CConfigFileParser::GetValue() error: keyword is empty!" << endl;
 		return 0;
 	}
 
@@ -333,11 +333,11 @@ int ConfigFileExtractor::GetValueInt(std::string key)
 }
 
 
-double ConfigFileExtractor::GetValueDouble(std::string key)
+double CConfigFileParser::GetValueDouble(std::string key)
 {
 	if( key == "" )
 	{
-		cerr << "ConfigFileExtractor::GetValue() error: keyword is empty!" << endl;
+		cerr << "CConfigFileParser::GetValue() error: keyword is empty!" << endl;
 		return 0.0;
 	}
 
@@ -359,11 +359,11 @@ double ConfigFileExtractor::GetValueDouble(std::string key)
 }
 
 
-string ConfigFileExtractor::GetValueString(std::string key)
+string CConfigFileParser::GetValueString(std::string key)
 {
 	if( key == "" )
 	{
-		cerr << "ConfigFileExtractor::GetValue() error: keyword is empty!" << endl;
+		cerr << "CConfigFileParser::GetValue() error: keyword is empty!" << endl;
 		return "";
 	}
 
@@ -381,11 +381,11 @@ string ConfigFileExtractor::GetValueString(std::string key)
 }
 
 
-bool ConfigFileExtractor::GetValueBool(std::string key)
+bool CConfigFileParser::GetValueBool(std::string key)
 {
 	if( key == "" )
 	{
-		cerr << "ConfigFileExtractor::GetValue() error: keyword is empty!" << endl;
+		cerr << "CConfigFileParser::GetValue() error: keyword is empty!" << endl;
 		return false;
 	}
 
@@ -414,7 +414,7 @@ bool ConfigFileExtractor::GetValueBool(std::string key)
 	}
 	else
 	{
-		cerr << "ConfigFileExtractor::GetValueBool() error: invalid value: " << result << endl;
+		cerr << "CConfigFileParser::GetValueBool() error: invalid value: " << result << endl;
 		return false;	
 	}
 

@@ -1,10 +1,10 @@
 #include <iostream>
 
-#include "ConfigFileExtractorTest.h"
+#include "CConfigFileParserTest.h"
 
 using namespace std;
 
-void ConfigFileExtractorTest::NewExtractTest(void)
+void CConfigFileParserTest::NewExtractTest(void)
 {
 		
 	cout << "-------------------------------" << endl;
@@ -49,7 +49,7 @@ void ConfigFileExtractorTest::NewExtractTest(void)
 	return;
 }
 
-void ConfigFileExtractorTest::CCSMConfTest(void)
+void CConfigFileParserTest::CCSMConfTest(void)
 {
 	string ip_c_1;
 	short port_c_1;

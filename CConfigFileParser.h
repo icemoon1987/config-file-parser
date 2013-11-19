@@ -18,7 +18,7 @@ enum KeywordType
 typedef std::pair<std::string,enum KeywordType> Keyword;
 
 
-class ConfigFileExtractor
+class CConfigFileParser
 {
 	private:
 		std::map<std::string, std::string> m_params;
@@ -38,8 +38,8 @@ class ConfigFileExtractor
 		int StoreParameter(const std::string key, const std::string value);
 
 	public:
-		ConfigFileExtractor();
-		~ConfigFileExtractor();
+		CConfigFileParser();
+		~CConfigFileParser();
 		
 	public:
 		void DumpParameters(void);

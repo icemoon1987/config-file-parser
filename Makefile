@@ -1,4 +1,4 @@
-# Makefile for ConfigFileExtractor 
+# Makefile for CConfigFileParser 
 # by Wenhai Pan in CRSC
 # 2013-06-24
 
@@ -7,8 +7,8 @@ TARGET = config_file_extractor
 LIB_ARGS = 
 
 OBJS = main.o \
-	   ConfigFileExtractor.o \
-	   ConfigFileExtractorTest.o \
+	   CConfigFileParser.o \
+	   CConfigFileParserTest.o \
 
 OBJS_C = 
 

@@ -1,19 +1,19 @@
 #include <iostream>
-#include "ConfigFileExtractor.h"
-#include "ConfigFileExtractorTest.h"
+#include "CConfigFileParser.h"
+#include "CConfigFileParserTest.h"
 
 using namespace std;
 
 int main( int argc, char *argv[])
 {
-	ConfigFileExtractor cfg;
-	ConfigFileExtractorTest cfgTest(cfg);
+	CConfigFileParser cfg;
+	CConfigFileParserTest cfgTest(cfg);
 	
 	//cfgTest.KeywordTest();
 	//cfgTest.ExtractFileTest();
-	
-	//cfgTest.NewExtractTest();
-	cfgTest.CCSMConfTest();
+	cfgTest.NewExtractTest();
+
+	//cfgTest.CCSMConfTest();
 
 	return 0;
 }
